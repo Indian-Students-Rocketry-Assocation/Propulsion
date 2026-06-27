@@ -21,10 +21,10 @@ We're a student rocketry association from Anand, Gujarat, building towards 100 k
 ```
 propulsion/
 ├── missions/
-│   ├── M001-HomiSII/
+│   ├── M003-HomiSII/
 │   │   ├── T001/                    # All information related to Test 1
 │   │   ├── T002/                    # All information related to Test 2
-│   └── M002-[name]/
+│   └── M004/
 └── resources/
     ├── test-rig/                    # Testing rig design, build, and procedure
     └── safety-protocols/            # Our handling and testing protocols
