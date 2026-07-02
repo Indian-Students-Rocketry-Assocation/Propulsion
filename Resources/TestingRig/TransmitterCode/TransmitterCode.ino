@@ -12,7 +12,7 @@
 // =============================================================================
 
 // Calibration default (will be overwritten from EEPROM if saved)
-float calibrationFactor = 23660.0f;  // <-- your calibrated value
+float calibrationFactor = 23699.0f;  // <-- your calibrated value
 
 // EEPROM layout
 const uint8_t EEPROM_MAGIC = 0xA5;
@@ -270,7 +270,7 @@ long applyFilter(long newVal) {
 float rawToForce(long rawValue) {
   // returns in 'units' determined by calibrationFactor
   // if calibrationFactor maps counts -> Newtons directly, this is Newtons.
-  return (float)(rawValue - tareOffset) / calibrationFactor;
+  return -(float)(rawValue - tareOffset) / calibrationFactor;
 }
 
 // =============================================================================
