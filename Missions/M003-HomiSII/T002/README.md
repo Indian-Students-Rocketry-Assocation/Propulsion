@@ -1,7 +1,7 @@
-# HomiS II - T001
-Propellant made: 27/06/2026 1330hrs
+# HomiS II - T002
+Propellant made: 27/06/2026 1100hrs
 
-Batch tested: 29/06/2026 1700hrs
+Batch tested: 29/06/2026 1120hrs
 
 Propellant: KNSU with Aluminium and Ferric Oxide
 
