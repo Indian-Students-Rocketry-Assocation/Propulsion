@@ -12,7 +12,7 @@
 // =============================================================================
 
 // Calibration default (will be overwritten from EEPROM if saved)
-float calibrationFactor = 23699.0f;  // <-- your calibrated value
+float calibrationFactor = 24374.0f;  // <-- your calibrated value
 
 // EEPROM layout
 const uint8_t EEPROM_MAGIC = 0xA5;
