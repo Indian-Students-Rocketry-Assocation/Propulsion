@@ -38,7 +38,7 @@ const int LED_PIN = 13;   // NOTE: D13 is also SPI SCK — flickers during RX, h
 // =============================================================================
 //  RADIO
 // =============================================================================
-RF24 radio(9, 8);     // CE, CSN
+RF24 radio(9, 10);     // CE, CSN
 const byte address[6] = "THRST";
 
 // MUST be byte-for-byte identical to the transmitter's struct.
@@ -73,7 +73,7 @@ void setup() {
   Serial.print(F("[NRF]   Initializing... "));
   if (!radio.begin()) {
     Serial.println(F("FAILED"));
-    Serial.println(F("!!! NRF24L01 not found. Check 3.3V supply, CE=D9, CSN=D8, SPI wiring."));
+    Serial.println(F("!!! NRF24L01 not found. Check 3.3V supply, CE=D9, CSN=D10, SPI wiring."));
     while (true) {
       digitalWrite(LED_PIN, !digitalRead(LED_PIN));
       delay(200);
