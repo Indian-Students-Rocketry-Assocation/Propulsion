@@ -1,23 +1,22 @@
-# HomiS II - T004
-Propellant made: 04/07/2026 1210hrs
+# HomiS II - T005
 
-Batch tested: 06/07/2026 1100hrs
+Propellant made: 08/07/2026 1240hrs
+
+Batch tested: 10/07/2026 1145hrs
 
 Propellant: KNSU with Aluminium and Ferric Oxide
 
-Casing: Metal Reusable
+Casing: Metal Reusable with CNC steel nozzle
 
-## About T004
+## About T005
 
-T004 was similar to T003 with two key differences - 
-
-1. lesser ammount of Ferric Oixde (3g -> 2g)
-2. constant induction temperature instead of variable settings based on texture (at 130deg C)
+T005 was identical to T004 except that the nozzle was made of steel using a CNC whereas, previously, we used a Mseal nozzle.
 
 ## Pre-test Rational
 
-The rational behind this test to change just 2 parameters (lesser amount of Ferric oxide and constant temperature setting instead of variable) to see possible disparities in the thrust curve. 
+The rational behind this test was to replicate T004 propellent formulation and test it properly in a robust casing as in T004 the casing exploded damaging the testing rig and leaving us with no data.
 
 ## Post-test Understanding
 
-We could not generate a thrust curve as the mseal nozzle catastrophically failed and the motor exploded. With the no data collected, T004 could not be characterised. 
+We could not generate a thrust curve as the metal casing catastrophically failed and the motor exploded. With the no data collected, T005 could not be characterised. We understand that the nozzle size (3 mm) was too small for a metal nozzle and we need to limit the rate of combustion using burn rate modifiers.
+
