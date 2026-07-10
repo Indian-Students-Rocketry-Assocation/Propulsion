@@ -53,7 +53,7 @@ int  filterIdx = 0;
 bool filterFull = false;
 
 // ---- Radio ----
-RF24 radio(9, 8);     // CE, CSN (unchanged)
+RF24 radio(9, 10);     // CE, CSN (unchanged)
 const byte address[6] = "THRST";
 
 struct TelemetryPacket {
