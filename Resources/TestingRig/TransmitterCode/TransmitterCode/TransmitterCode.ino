@@ -12,11 +12,7 @@
 // =============================================================================
 
 // Calibration default (will be overwritten from EEPROM if saved)
-<<<<<<< Updated upstream
 float calibrationFactor = 24374.0f;  // <-- your calibrated value
-=======
-float calibrationFactor = 22661.0f;  // <-- your calibrated value
->>>>>>> Stashed changes
 
 // EEPROM layout
 const uint8_t EEPROM_MAGIC = 0xA5;
@@ -57,7 +53,7 @@ int  filterIdx = 0;
 bool filterFull = false;
 
 // ---- Radio ----
-RF24 radio(9, 10);     // CE, CSN (unchanged)
+RF24 radio(9, 8);     // CE, CSN (unchanged)
 const byte address[6] = "THRST";
 
 struct TelemetryPacket {
