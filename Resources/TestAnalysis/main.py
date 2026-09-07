@@ -4,27 +4,30 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-from matplotlib.patches import Patch
 
 # ── Configuration ──────────────────────────────────────────────────────────────
-# Usage: python main.py <base_name> <ignition_s> <burnout_s> [propellant_mass_kg]
+# Usage: python main.py <base_name> <ignition_s> <burnout_s> [propellant_mass_kg] [tare_samples]
 #   e.g. python main.py T003 9.4 15.2 0.076
 #
-# Loads two files:
-#   <base>R.csv  -> "repaired" data (missing samples filled with generated readings)
-#   <base>O.csv  -> "original"  data (missing samples flagged as 0.00)
+# Two input layouts are supported:
+#   <base>R.csv + <base>O.csv  -> "repaired" (gaps filled) + "original" (gaps
+#                                  flagged as 0.00) pair, both header "Time,Thrust"
+#   <base>.csv                 -> single file, used for both panels (no missing
+#                                  samples). Accepts a header ("Time,Thrust" or
+#                                  "Time,RawADC,Thrust") or no header (2 or 3
+#                                  columns, last column is Thrust).
 #
-# Both CSVs are assumed to be ALREADY calibration-corrected. This script only
+# All inputs are assumed to be ALREADY calibration-corrected. This script only
 # tares (zeros) them using the first TARE_SAMPLES readings.
 if len(sys.argv) < 4:
-    print("Usage: python main.py <base_name> <ignition_s> <burnout_s> [propellant_mass_kg]")
+    print("Usage: python main.py <base_name> <ignition_s> <burnout_s> [propellant_mass_kg] [tare_samples]")
     sys.exit(1)
 
 BASE = sys.argv[1]
 T_IGNITION = float(sys.argv[2])
 T_BURNOUT = float(sys.argv[3])
-PROPELLANT_MASS_KG = float(sys.argv[4]) if len(sys.argv) > 4 else 0.076
-TARE_SAMPLES = 40           # tare against the mean of the first 40 readings
+PROPELLANT_MASS_KG = float(sys.argv[4]) if len(sys.argv) > 4 else 0.0316
+TARE_SAMPLES = int(sys.argv[5]) if len(sys.argv) > 5 else 40   # tare against the mean of the first N readings
 G = 9.80665
 
 # Resolve file paths — accept either "T003" or a full "T003R.csv" argument.
@@ -34,24 +37,49 @@ if stem.endswith("R") or stem.endswith("O"):
 data_dir = os.path.dirname(os.path.abspath(BASE)) or "."
 R_FILE = os.path.join(data_dir, f"{stem}R.csv")
 O_FILE = os.path.join(data_dir, f"{stem}O.csv")
+SINGLE_FILE = os.path.join(data_dir, f"{stem}.csv")
 test_name = stem
 
-# ── Load repaired (R) data & tare ────────────────────────────────────────────────
-df = pd.read_csv(R_FILE)
-df["Time_s"] = df["Time"] / 1000.0
-tare_offset = df["Thrust"].iloc[:TARE_SAMPLES].mean()   # tare = mean of first 40 samples
-df["Thrust_tared"] = df["Thrust"] - tare_offset
 
-# ── Load original (O) data — 0.00 flags missing samples ──────────────────────────
-odf = pd.read_csv(O_FILE)
-odf["Time_s"] = odf["Time"] / 1000.0
-odf["missing"] = odf["Thrust"] == 0.0
-# Tare the original against the first 40 readings, ignoring any missing (0.00)
-# flags that fall within that window.
-o_head = odf["Thrust"].iloc[:TARE_SAMPLES]
-o_tare_offset = o_head[o_head != 0.0].mean()
-# Present missing samples as NaN so the trace breaks at every gap.
-odf["Thrust_valid"] = np.where(odf["missing"], np.nan, odf["Thrust"] - o_tare_offset)
+def load_thrust_csv(path):
+    """Load a Time/Thrust CSV, tolerating a missing header and an extra
+    leading raw-ADC column (Time,RawADC,Thrust)."""
+    probe = pd.read_csv(path, nrows=0)
+    if "Time" in probe.columns and "Thrust" in probe.columns:
+        return pd.read_csv(path)
+    ncols = pd.read_csv(path, nrows=1, header=None).shape[1]
+    names = ["Time", "Thrust"] if ncols == 2 else ["Time", "RawADC", "Thrust"]
+    return pd.read_csv(path, header=None, names=names)
+
+
+if os.path.exists(R_FILE) and os.path.exists(O_FILE):
+    # ── Load repaired (R) data & tare ────────────────────────────────────────
+    df = load_thrust_csv(R_FILE)
+    df["Time_s"] = df["Time"] / 1000.0
+    tare_offset = df["Thrust"].iloc[:TARE_SAMPLES].mean()
+    df["Thrust_tared"] = df["Thrust"] - tare_offset
+
+    # ── Load original (O) data — 0.00 flags missing samples ─────────────────
+    odf = load_thrust_csv(O_FILE)
+    odf["Time_s"] = odf["Time"] / 1000.0
+    odf["missing"] = odf["Thrust"] == 0.0
+    o_head = odf["Thrust"].iloc[:TARE_SAMPLES]
+    o_tare_offset = o_head[o_head != 0.0].mean()
+    odf["Thrust_valid"] = np.where(odf["missing"], np.nan, odf["Thrust"] - o_tare_offset)
+elif os.path.exists(SINGLE_FILE):
+    # ── Single-file mode: one clean recording, no missing samples ───────────
+    df = load_thrust_csv(SINGLE_FILE)
+    df["Time_s"] = df["Time"] / 1000.0
+    tare_offset = df["Thrust"].iloc[:TARE_SAMPLES].mean()
+    df["Thrust_tared"] = df["Thrust"] - tare_offset
+
+    odf = df.copy()
+    odf["missing"] = False
+    o_tare_offset = tare_offset
+    odf["Thrust_valid"] = odf["Thrust_tared"]
+else:
+    print(f"Could not find {R_FILE} + {O_FILE}, nor {SINGLE_FILE}")
+    sys.exit(1)
 
 # ── Ignition & burnout (manual) ────────────────────────────────────────────────
 peak_thrust = df["Thrust_tared"].max()
@@ -121,24 +149,10 @@ print(f"""
 {'='*60}
 """)
 
-# ── Contiguous missing-data spans (for shading the original trace) ──────────────
-missing_spans = []
-in_gap = False
-for _, row in odf.iterrows():
-    if row["missing"] and not in_gap:
-        start = row["Time_s"]
-        in_gap = True
-    elif not row["missing"] and in_gap:
-        missing_spans.append((start, prev_t))
-        in_gap = False
-    prev_t = row["Time_s"]
-if in_gap:
-    missing_spans.append((start, prev_t))
-
 # ── Plot ───────────────────────────────────────────────────────────────────────
-fig, (ax, ax2) = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
+fig, ax = plt.subplots(figsize=(12, 6))
 
-# ── Top panel: corrected (weight-compensated) thrust curve ─────────────────────
+# ── Corrected (weight-compensated) thrust curve ─────────────────────────────────
 ax.plot(df["Time_s"], df["Thrust_tared"], color="#aaa", linewidth=1.0,
         linestyle="--", label="Raw (tared)")
 ax.plot(df["Time_s"], df["Thrust_corrected"], color="#e84118", linewidth=1.8,
@@ -183,41 +197,15 @@ ax.text(0.97, 0.97, info, transform=ax.transAxes, fontsize=8.5,
         fontfamily="monospace", verticalalignment="top", horizontalalignment="right",
         bbox=dict(boxstyle="round,pad=0.5", facecolor="white", edgecolor="#ccc", alpha=0.9))
 
+ax.set_xlabel("Time (s)", fontsize=11)
 ax.set_ylabel("Thrust (N)", fontsize=11)
 ax.set_title(f"{test_name} — Thrust Curve (calibration-corrected, weight-compensated)",
              fontsize=13, fontweight="bold")
+ax.xaxis.set_minor_locator(ticker.AutoMinorLocator())
 ax.yaxis.set_minor_locator(ticker.AutoMinorLocator())
 ax.grid(True, which="major", linestyle="--", alpha=0.5)
 ax.grid(True, which="minor", linestyle=":", alpha=0.25)
 ax.legend(fontsize=9, loc="upper left")
-
-# ── Bottom panel: original readings with missing data indicated ────────────────
-# Shade every contiguous missing-data span.
-for i, (s, e) in enumerate(missing_spans):
-    ax2.axvspan(s, e, color="#e84118", alpha=0.12,
-                label="Missing data" if i == 0 else None)
-
-# Original tared trace — line breaks at each gap; markers show recorded samples.
-ax2.plot(odf["Time_s"], odf["Thrust_valid"], color="#0097e6", linewidth=1.3,
-         marker="o", markersize=2.5, label="Original (tared)")
-ax2.axhline(0, color="#999", linewidth=0.8, linestyle="--")
-ax2.axvline(t_ignition, color="#2ecc71", linewidth=1.2, linestyle="-.")
-ax2.axvline(t_burnout, color="#3498db", linewidth=1.2, linestyle="-.")
-
-ax2.set_xlabel("Time (s)", fontsize=11)
-ax2.set_ylabel("Thrust (N)", fontsize=11)
-ax2.set_title(f"{test_name} — Original Readings ({n_missing} missing samples flagged)",
-              fontsize=12, fontweight="bold")
-ax2.xaxis.set_minor_locator(ticker.AutoMinorLocator())
-ax2.yaxis.set_minor_locator(ticker.AutoMinorLocator())
-ax2.grid(True, which="major", linestyle="--", alpha=0.5)
-ax2.grid(True, which="minor", linestyle=":", alpha=0.25)
-
-# Legend for bottom panel (include a proxy for the missing-data shading).
-handles, labels = ax2.get_legend_handles_labels()
-if "Missing data" not in labels:
-    handles.append(Patch(facecolor="#e84118", alpha=0.12, label="Missing data"))
-ax2.legend(handles=handles, fontsize=9, loc="upper left")
 
 plt.tight_layout()
 out_png = f"{test_name}.png"

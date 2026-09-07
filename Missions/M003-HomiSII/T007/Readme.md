@@ -2,7 +2,7 @@
 
 Propellant made: 12/08/2026 1101hrs
 
-Batch tested: /08/2026 hrs
+Batch tested: 13/08/2026 hrs
 
 Propellant: KNSU
 
