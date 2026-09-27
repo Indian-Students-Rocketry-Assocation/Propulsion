@@ -29,8 +29,7 @@ t_last_real = df["Time_s"].iloc[-1]          # 5.4 s
 v_last_real = df["Thrust_tared"].iloc[-1]    # last measured (tared) sample
 
 # ── Build the predicted continuation from T002's normalized decay curve ────
-t002 = pd.read_csv(os.path.join(data_dir, "..", "..",
-                                 "Missions", "M003-HomiSII", "T002", "T002.csv"))
+t002 = pd.read_csv(os.path.join(data_dir, "..", "T002", "T002.csv"))
 t002["Time_s"] = t002["Time"] / 1000.0
 t002_tare = t002["Thrust"].iloc[:40].mean()
 t002["Thrust_t"] = t002["Thrust"] - t002_tare

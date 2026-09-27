@@ -1,22 +1,22 @@
-# HomiS II - T006
+# T006 — Pure KNSU, cardboard casing
 
-Propellant made: 08/08/2026 1140hrs
+| | |
+|---|---|
+| Propellant made | 2026-08-08, 11:40 |
+| Tested | 2026-08-09, 11:45 |
+| Propellant | KNSU, 60:40 KNO₃ : sucrose, no additives |
+| Casing | Hard cardboard casing with M-Seal nozzle |
+| Result | **No data.** The nozzle blew out. |
 
-Batch tested: 09/08/2026 1145hrs
+No log sheet was scanned for this test.
 
-Propellant: KNSU
+## Why
 
-Casing: Cardboard casing with MSeal Nozzle
+After the metal casing exploded in T005, we changed two things:
 
-## About T006
+- **Casing:** reusable metal → hard cardboard with an M-Seal nozzle.
+- **Propellant:** composite (with Al and Fe₂O₃) → plain KNSU. We followed the procedure and formulation in a paper by Bharti, Bansal and Chalia, going from our earlier 65:35 to their 60:40 ratio, which the paper says is easier to pour.
 
-T006 was different from T005 as we switched from a reusable metal casing to a hard cardboard casing with a MSeal nozzle after the explosion of the metal casing, and instead of making a composite propellant by adding Aluminium and Ferric Oxide, we made a pure propellant by just using Sucrose and KnO3, and the procedure used to make the propellant was taken from a research paper by Bharti, Bansal and Chalia.
+## What happened
 
-## Pre-test Rational
-
-The rational behind this test was to change the propellant formulation and replicate the one stated in a research paper by Bharti, Bansal and Chalia and test it properly in a hard cardboard casing. Previously we were using a 65:35 ratio which we changed to a 60:40 ratio as stated by the paper because it stated that it was easier to pour.
-
-## Post-test Understanding
-
-The propellant made was very powdery indicating that no caramelization of sugar took place, which is as per the paper followed. But the Mseal nozzle made was not sufficient to withhold the pressure, and the nozzle exploded during the testing leaving us again with no data.
-
+The propellant came out powdery, meaning the sugar didn't caramelise. That's consistent with the paper's method. The M-Seal nozzle couldn't hold the pressure and blew out, so there's no data.

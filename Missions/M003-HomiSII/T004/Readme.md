@@ -1,23 +1,39 @@
-# HomiS II - T004
-Propellant made: 04/07/2026 1210hrs
+# T004 — Less Fe₂O₃, fixed temperature
 
-Batch tested: 06/07/2026 1100hrs
+| | |
+|---|---|
+| Propellant made | 2026-07-04, 12:10 |
+| Tested | 2026-07-06, 11:00 |
+| Propellant | KNSU with aluminium and ferric oxide. 96 g loaded |
+| Casing | Reusable metal casing, M-Seal nozzle, forward closure. ID 27.0 mm, IL 127.7 mm |
+| Nozzle | Sheet reads "0.3 mm", probably 3 mm (T005 used 3 mm) |
+| Result | **Motor exploded.** The M-Seal nozzle failed. No data. |
 
-Propellant: KNSU with Aluminium and Ferric Oxide
+## Formulation
 
-Casing: Metal Reusable
+From the [log sheet](T004.pdf):
 
-## About T004
+| Chemical | Mass (g) |
+|---|---|
+| Potassium nitrate (KNO₃) | 65 |
+| Sucrose | 27 |
+| Aluminium, 325 mesh | 5 |
+| Ferric oxide (Fe₂O₃) | 2 |
 
-T004 was similar to T003 with two key differences - 
+Room: 28 °C, 81% humidity.
 
-1. lesser ammount of Ferric Oixde (3g -> 2g)
-2. constant induction temperature instead of variable settings based on texture (at 130deg C)
+## Why
 
-## Pre-test Rational
+Two changes from T003:
 
-The rational behind this test to change just 2 parameters (lesser amount of Ferric oxide and constant temperature setting instead of variable) to see possible disparities in the thrust curve. 
+1. Less ferric oxide: 3 g → 2 g.
+2. A constant cooking temperature of 130 °C, instead of adjusting it by the texture of the mix.
 
-## Post-test Understanding
+## What happened
 
-We could not generate a thrust curve as the mseal nozzle catastrophically failed and the motor exploded. With the no data collected, T004 could not be characterised. 
+The M-Seal nozzle failed catastrophically and the motor exploded. No thrust curve, so T004 couldn't be characterised.
+
+## Files
+
+- `T004.pdf`: scanned log sheet
+- `T004.mov`: video

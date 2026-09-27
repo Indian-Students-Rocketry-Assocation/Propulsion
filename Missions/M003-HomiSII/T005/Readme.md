@@ -1,22 +1,22 @@
-# HomiS II - T005
+# T005 — Steel nozzle
 
-Propellant made: 08/07/2026 1240hrs
+| | |
+|---|---|
+| Propellant made | 2026-07-08, 12:40 |
+| Tested | 2026-07-10, 11:45 |
+| Propellant | KNSU with aluminium and ferric oxide, same as T004 |
+| Casing | Reusable metal casing with a CNC-machined steel nozzle |
+| Nozzle | 3 mm |
+| Result | **Motor exploded.** The metal casing failed. No data. |
 
-Batch tested: 10/07/2026 1145hrs
+No log sheet was scanned for this test.
 
-Propellant: KNSU with Aluminium and Ferric Oxide
+## Why
 
-Casing: Metal Reusable with CNC steel nozzle
+T004 exploded when its M-Seal nozzle failed, damaging the rig and leaving no data. We repeated T004's formulation in a more robust setup, using a steel nozzle machined on a CNC.
 
-## About T005
+## What happened
 
-T005 was identical to T004 except that the nozzle was made of steel using a CNC whereas, previously, we used a Mseal nozzle.
+The metal casing failed catastrophically and the motor exploded. No thrust curve.
 
-## Pre-test Rational
-
-The rational behind this test was to replicate T004 propellent formulation and test it properly in a robust casing as in T004 the casing exploded damaging the testing rig and leaving us with no data.
-
-## Post-test Understanding
-
-We could not generate a thrust curve as the metal casing catastrophically failed and the motor exploded. With the no data collected, T005 could not be characterised. We understand that the nozzle size (3 mm) was too small for a metal nozzle and we need to limit the rate of combustion using burn rate modifiers.
-
+Our conclusion: a 3 mm throat was too small for a metal nozzle, and the combustion rate has to be limited with burn-rate modifiers before we go back to metal hardware.

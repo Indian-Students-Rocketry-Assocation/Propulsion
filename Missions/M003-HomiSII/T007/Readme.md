@@ -1,22 +1,19 @@
-# HomiS II - T007
+# T007 — Thicker M-Seal nozzle
 
-Propellant made: 12/08/2026 1101hrs
+| | |
+|---|---|
+| Propellant made | 2026-08-12, 11:01 |
+| Tested | 2026-08-13, 11:10 |
+| Propellant | KNSU, 60:40 KNO₃ : sucrose, same as T006 |
+| Casing | Hard cardboard casing with a thicker M-Seal nozzle |
+| Result | **No data.** The nozzle blew out. |
 
-Batch tested: 13/08/2026 1110hrs
+No log sheet was scanned for this test.
 
-Propellant: KNSU
+## Why
 
-Casing: Cardboard casing with MSeal Nozzle
+T006's M-Seal nozzle couldn't hold the pressure. Everything else stayed the same; the only change was a thicker nozzle.
 
-## About T007
+## What happened
 
-T007 was similar to T006 as we used a hard cardboard casing with a MSeal nozzle, and made a pure propellant by just using Sucrose and KnO3, and the procedure used to make the propellant was taken from a research paper by Bharti, Bansal and Chalia.
-
-## Pre-test Rational
-
-The rational behind this test was that T006 had failed as MSeal nozzle could not withhold the pressure so in T007 we made a thicker MSeal nozzle.
-
-## Post-test Understanding
-
-The propellant made was very powdery indicating that no caramelization of sugar took place, which is as per the paper followed. But the Mseal nozzle made was not sufficient to withhold the pressure, and the nozzle exploded during the testing leaving us again with no data.
-
+Same as T006. The propellant was powdery (no caramelisation, as the paper's method expects), and the thicker M-Seal nozzle still blew out. No data.

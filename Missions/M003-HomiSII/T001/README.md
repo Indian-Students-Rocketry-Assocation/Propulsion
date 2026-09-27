@@ -1,22 +1,34 @@
-# HomiS II - T001
-Propellant made: 25/06/2026 1330hrs
+# T001 — Rig debut
 
-Batch tested: 26/06/2026 1700hrs
+| | |
+|---|---|
+| Propellant made | 2026-06-25, 13:30 |
+| Tested | 2026-06-26, 17:00 |
+| Propellant | KNSU with aluminium and ferric oxide |
+| Casing | Reusable metal casing, M-Seal and metal nozzle, forward closure. ID 27.0 mm, mass 619.45 g |
+| Nozzle | Illegible on log sheet |
+| Result | **No data.** The test rig didn't record. |
 
-Propellant: KNSU with Aluminium and Ferric Oxide
+## Formulation
 
-Casing: Metal Reusable
+From the [log sheet](T001.pdf):
 
-## About T001
+| Chemical | Mass (g) |
+|---|---|
+| Potassium nitrate (KNO₃) | 65 |
+| Sucrose | 27 |
+| Aluminium, 325 mesh | 5 |
+| Ferric oxide (Fe₂O₃) | 3 |
 
-Resuming propulsion work after a long time, we recreated the most successful formulation we had created up till this point. 
+## Why
 
+We were resuming propulsion work after a long gap, so we recreated our most successful formulation to date. We'd never had a rig that could produce a thrust curve. The Electronics team built one for this test so we could properly characterise that formulation.
 
-## Pre-test Rational
+## What happened
 
-The rational behind this was previously we did not have a proper testing rig and hence coulnd't produce a thrust curve. The Electronics team developed a testing rig prior to T001, with which we would properly characterise our best formulation.
+The rig didn't record any thrust data, so the main goal wasn't met. Visually, the thrust looked promising, but that isn't enough to draw conclusions. Repeated as T002.
 
+## Files
 
-## Post-test Understadning
-
-The testing rig did not record the thrust data, hence our main goal with T001 was not acheived. Visually, the thrust seemed promising but not enough information was received to draw any conclusions. We will repeat the test with T002.
+- `T001.pdf`: scanned log sheet
+- `T001-RT.mp4`: real-time video · `T001-SM.mp4`: slow motion

@@ -1,23 +1,37 @@
-# HomiS II - T002
-Propellant made: 27/06/2026 1100hrs
+# T002 — First thrust curve
 
-Batch tested: 29/06/2026 1120hrs
+| | |
+|---|---|
+| Propellant made | 2026-06-27, 11:00 |
+| Tested | 2026-06-29, 11:20 |
+| Propellant | KNSU with aluminium and ferric oxide. 85 g loaded (handwriting unclear) |
+| Casing | Reusable metal casing, M-Seal and metal nozzle, forward closure. OD 34.3 mm, ID 25.8 mm, IL 127.7 mm, mass 619.45 g |
+| Nozzle | 4 mm |
+| Result | **D3.** First characterised motor. |
 
-Propellant: KNSU with Aluminium and Ferric Oxide
+## Formulation
 
-Casing: Metal Reusable
+Same as T001. From the [log sheet](T002.pdf):
 
-## About T002
+| Chemical | Mass (g) | Vendor |
+|---|---|---|
+| Potassium nitrate (KNO₃) | 65 | ACS Chemicals |
+| Sucrose | 27 | Whole Farm |
+| Aluminium, 325 mesh | 5 | Chemco (Chemdyes Corporation) |
+| Ferric oxide (Fe₂O₃) | 3 | Chemco (Chemdyes Corporation) |
 
-As we failed to record the thrust curve of T001, everything was kept same as T001 and an improved testing rig was used.
+## Why
 
+T001 was inconclusive because the rig recorded nothing. We kept everything else the same and used the Electronics team's improved rig.
 
-## Pre-test Rational
+## What happened
 
-The rational behind this test was our previous test was inconclusive as our testing rig failed to record any data. The Electronics team developed an improved testing rig prior to T002, with which would properly characterise our best formulation.
+The rig worked. We got a full thrust curve, analysed it in Python, and characterised the motor as a **D3**. HomiS II needs an E5, so total impulse and average thrust both have to rise. From here we change one variable at a time.
 
-![T002 Thrust Curve Analysis](T002.png)
+![T002 thrust curve](T002.png)
 
-## Post-test Understadning
+## Files
 
-The testing rig worked succesfully and we generated a thrust curve and performed an analysis with Python. With the data collected, T002 was characterised as a D3 class motor. We are aiming for an E5 class motor for HomiS II, hence we are aiming to increase the total impulse and average thrust. We will do so by iterating one variable at a time.
+- `T002.pdf`: scanned log sheet
+- `T002.csv`: thrust data · `T002.png`: analysis
+- `T002.mov`: video
