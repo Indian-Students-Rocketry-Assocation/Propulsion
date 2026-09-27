@@ -4,8 +4,7 @@
 |---|---|
 | Date | 2024-10-20 |
 | Motor | In-house KNSU: 65:35 potassium nitrate : sucrose, with 1% potassium dichromate |
-| Design | OpenRocket (`SRM.ork`), held by ISRA, not in this repo |
-| Outcome | Unrecorded |
+| Outcome | It exploded immediately on ignition |
 
 No test logs, data or video were kept from this mission. What is above was reconstructed from team memory in September 2026.
 
