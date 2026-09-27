@@ -12,11 +12,7 @@
 // =============================================================================
 
 // Calibration default (will be overwritten from EEPROM if saved)
-<<<<<<< Updated upstream
 float calibrationFactor = 24374.0f;  // <-- your calibrated value
-=======
-float calibrationFactor = 22661.0f;  // <-- your calibrated value
->>>>>>> Stashed changes
 
 // EEPROM layout
 const uint8_t EEPROM_MAGIC = 0xA5;
@@ -204,7 +200,7 @@ void initHX711() {
 void initRadio() {
   Serial.print(F("[NRF]   Initializing... "));
   if (!radio.begin()) {
-    haltWithError("NRF24L01 not found. Check 3.3V supply, CE=D9, CSN=D8, SPI wiring.", false);
+    haltWithError("NRF24L01 not found. Check 3.3V supply, CE=D9, CSN=D10, SPI wiring.", false);
   }
 
   radio.setPALevel(RF24_PA_LOW);

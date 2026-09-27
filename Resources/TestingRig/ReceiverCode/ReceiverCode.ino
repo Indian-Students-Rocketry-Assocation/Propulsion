@@ -8,7 +8,7 @@
 //    - NRF24L01 2.4 GHz radio (SPI)
 //
 //  Wiring:
-//    NRF24L01 -> CE:D9, CSN:D8, SCK:D13, MOSI:D11, MISO:D12, VCC:3.3V, GND:GND
+//    NRF24L01 -> CE:D9, CSN:D10, SCK:D13, MOSI:D11, MISO:D12, VCC:3.3V, GND:GND
 //
 //  *** NRF24L01 POWER ***
 //    - VCC = 3.3V ONLY (logic pins are 5V-tolerant).
