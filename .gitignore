@@ -17,3 +17,6 @@ __pycache__/
 
 # Secrets
 .env
+
+# Scratch
+Resources/TestAnalysis/Random Testing/
